@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/index.min.css" />
+  </head>
+  <body>
+    <!-- 登录界面 -->
+    <div class="login-layout">
+      <div class="head">
+        <label class="change-avatar" for="change-avatar">
+          <img src="./src/images/change.png" alt="" />
+          <input
+            type="file"
+            class="change-avatar-input"
+            id="change-avatar"
+            accept="image/*"
+            style="display: none;"
+          />
+        </label>
+        <img class="select-avatar" src="./src/images/th.jpg" alt="" />
+      </div>
+      <div class="footer">
+        <input
+          class="user-name-input"
+          id="user-name-input"
+          type="text"
+          placeholder="userName"
+        />
+        <button class="join">join</button>
+      </div>
+    </div>
+    <!-- 聊天界面 -->
+    <div class="app-layout" style="display: none;">
+      <!-- 左边 -->
+      <div class="left" id="left">
+        <div class="user-info">
+          <!-- <img class="info-avatar" src="./src/images/OIP-C.jpg" alt="" />
+          <span class="info-username"></span> -->
+        </div>
+        <div class="user-list-group" id="user-list-group">
+          <div class="tag" id="tag"></div>
+          <div class="item active">
+            <div class="avatar">
+              <img src="./src/images/pkq.jpg" alt="avatar" />
+            </div>
+            <div class="user-name">
+              聊天室
+            </div>
+            <!-- <div class="new-message">99+</div> -->
+          </div>
+        </div>
+      </div>
+      <!-- 右边 -->
+      <div class="right" id="right">
+        <div class="chat-group">
+          <div class="title">
+            <span>一个聊天室(99)</span>
+            <img class="more" src="./src/images/more.png" alt="" />
+          </div>
+          <div class="chat-window">
+            <!-- <div class="alert-tga">
+              春暖花开加入了群聊
+            </div>
+            <div class="alert-tga">
+              春暖花开离开了群聊
+            </div> -->
+          </div>
+          <div class="input-group">
+            <form action="#">
+              <input
+                class="input-message"
+                type="text"
+                placeholder="fype your message here"
+              />
+              <button class="send" type="button">
+                <svg
+                  t="1673788544522"
+                  class="icon"
+                  viewBox="0 0 1045 1024"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  p-id="2697"
+                  width="200"
+                  height="200"
+                >
+                  <path
+                    d="M989.184 87.530667c30.421333-10.154667 60.736 15.637333 55.594667 47.296l-128 789.333333a42.666667 42.666667 0 0 1-63.082667 30.336l-340.736-192.213333-154.837333 66.282666a42.666667 42.666667 0 0 1-59.349334-36.181333L298.666667 789.269333l0.256-147.733333-277.226667-156.373333c-31.168-17.6-27.882667-62.890667 4.181333-76.394667l3.306667-1.237333z m-39.936 103.232L147.349333 458.069333l215.253334 121.408a42.666667 42.666667 0 0 1 21.546666 33.706667l0.149334 3.541333-0.192 107.882667 114.666666-49.066667a42.666667 42.666667 0 0 1 34.218667 0.277334l3.541333 1.792 305.792 172.501333 106.922667-659.349333z m-127.146667 123.264a42.666667 42.666667 0 0 1-2.858666 57.728l-2.602667 2.346666-256 213.333334a42.666667 42.666667 0 0 1-57.216-63.189334l2.602667-2.346666 256-213.333334a42.666667 42.666667 0 0 1 60.074666 5.461334z"
+                    fill="#ffffff"
+                    p-id="2698"
+                  ></path>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- <script type="module" src="./src/js/index.js"></script>
+  <script type="module" src="./src/js/socket.js"></script> -->
+  <script src="./src/js/main.js"></script>
+</html>
