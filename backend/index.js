@@ -1,17 +1,14 @@
 const app = require("express")();
 const http = require("http").Server(app);
-const io = require("socket.io")(http);
+const io = require("socket.io")(http, { cors: true });
 const port = 3000;
-//express 吧public目录设置为静态资源目录
-app.use(require("express").static("public"));
-app.get("/", (req, res) => {
-  // 重定向到index.html
-  res.redirect("/index.html");
-});
 //监听用户的连接的事件
 // socket表示用户连接
 // socket.emit 表示触发某个事件
 // socket.on 表示注册某个事件
+app.get("/", function (req, res) {
+  res.send("<h1>如果你看到了这个界面那么服务已经启动了</h1>");
+});
 const users = [];
 io.on("connection", (socket) => {
   console.log("有用户连接上");
@@ -20,7 +17,7 @@ io.on("connection", (socket) => {
     //广播事件
     io.emit("chat message", msg, userInfo);
   });
-  //登录事件 登录成功后给用户添加uuid push到users
+  //登录事件
   socket.on("login", (userInfo) => {
     let user;
     if (users) {

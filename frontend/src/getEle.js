@@ -46,3 +46,5 @@ export const messageInput = document.querySelectorAll(".input-message");
 export const joinBtn = document.querySelector(".join");
 // unserInfo
 export const userInfo = document.querySelector(".left .user-info");
+//登出
+export const logOutBtn = document.querySelector(".logout");

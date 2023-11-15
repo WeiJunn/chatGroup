@@ -9,10 +9,12 @@ import {
   allChatGroupinput, //聊天组所有的input
   allChatGroupSendBtn, //聊天组所有发送按钮
   allChatGroupChatWindow, //聊天组所有的聊天框
+  logOutBtn, //登出按钮
   joinBtn,
   userInfo,
-  // allUserItem,
 } from "./getEle.js";
+import { io } from "socket.io-client";
+let url = "http://localhost:3000/";
 let myUserInfo;
 let socket;
 let topMoveDistance = 4.9; //  4.5 + 0.4rem
@@ -43,20 +45,17 @@ allChatGroupSendBtn[0].addEventListener("click", function (e) {
 //用户名input enter事件  进入聊天室事件
 userNameInput.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
-    if (!userNameInput.value) {
-      return;
-    } else if (userNameInput.value.length > 15) {
-      alert("用户名长度不能超过15");
-      return;
-    }
-    createdSocket();
-    let src = selectAvatar.getAttribute("src");
-    let userInfo = { userName: userNameInput.value, avatar: src };
-    socket.emit("login", userInfo);
+    login();
   }
 });
 //joinBtn click
-joinBtn.addEventListener("click", function () {
+joinBtn.addEventListener("click", login);
+//登出
+logOutBtn.addEventListener("click", function () {
+  //暴力登出刷新界面
+  location.reload();
+});
+function login() {
   if (!userNameInput.value) {
     return;
   } else if (userNameInput.value.length > 15) {
@@ -65,11 +64,10 @@ joinBtn.addEventListener("click", function () {
   }
   createdSocket();
   let src = selectAvatar.getAttribute("src");
-  socket.emit("login", {
-    userName: userNameInput.value,
-    avatar: src,
-  });
-});
+  let userInfo = { userName: userNameInput.value, avatar: src };
+  socket.emit("login", userInfo);
+  userNameInput.value = "";
+}
 //创建聊天室的聊天信息
 function createdChatRommMessage(msg, userInfo) {
   // isMymessage 判断是不是自己发的消息 true为自己发的
@@ -159,6 +157,7 @@ function createdNewMessage(userList, index) {
       for (const item1 of item.classList) {
         if (item1 === "new-message") {
           item.innerText = parseInt(item.innerText) + 1;
+          console.log("item", item);
           return true;
         }
       }
@@ -257,7 +256,6 @@ function allUserItemBindClick() {
           }
         }
       }
-
       for (const item of allChatGroup) {
         item.style.display = "none";
       }
@@ -474,7 +472,7 @@ function initFunction(notMyuserInfo) {
 }
 //创建socket.io实例
 function createdSocket() {
-  socket = io();
+  socket = io(url);
   //登录成功 获取自己的用户信息和所有用户的信息
   socket.on("loginSucceed", (userInfo) => {
     myUserInfo = userInfo;

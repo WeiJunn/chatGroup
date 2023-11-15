@@ -91,25 +91,11 @@ html {
       cursor: pointer;
       width: 80%;
       padding: 5px 40px;
-      // margin: 0px 10px 10px 0px;
-      float: left;
       border-radius: 3px;
       font-size: 20px;
       color: #fff;
       text-decoration: none;
       background-color: #a06eec;
-      border: none;
-      border-bottom: 5px solid #2ca0d9;
-      text-shadow: 0px -2px #2ca0d9;
-      -webkit-transition: all 0.1s;
-      transition: all 0.1s;
-      &:hover,
-      &:active {
-        -webkit-transform: translate(0px, 5px);
-        -ms-transform: translate(0px, 5px);
-        transform: translate(0px, 5px);
-        border-bottom: 1px solid #147cff;
-      }
     }
     &:focus {
       outline: none;
@@ -233,9 +219,7 @@ html {
     flex-direction: column;
     height: 100%;
     width: 99%;
-    // width: 79%;
     margin-left: 1%;
-    // border-right: 1px solid #eee;
     border-radius: 0 $app-border-radius $app-border-radius 0;
     .chat-group {
       width: 100%;
@@ -249,13 +233,13 @@ html {
         margin: 0 auto;
         height: 8%;
         width: 95%;
-        img.more {
+        img.logout {
           position: absolute;
           left: 10px;
           top: 50%;
           transform: translate(0px, -50%);
           cursor: pointer;
-          height: 50%;
+          height: 30%;
         }
       }
       .chat-window {
